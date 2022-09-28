@@ -1,0 +1,88 @@
+<header>Reactive Form Example</header>
+
+<button type="button">Add User</button>
+
+<form [formGroup]="userForm">
+  <div>
+    <label for="fName"> First Name </label>
+    <input type="text" formControlName="FName" />
+  </div>
+  <div>
+    <label for="LName"> Last Name </label>
+    <input type="text" formControlName="LName" />
+  </div>
+  <div>
+    <label for="email"> Email </label>
+    <input type="email" formControlName="email" />
+  </div>
+  <div>
+    <label for="contact"> Phone Number </label>
+    <input type="text" formControlName="phoneNumber" />
+  </div>
+  <div>
+    <label for="company"> Company </label>
+    <input type="text" formControlName="company" />
+  </div>
+  <div>
+    <label>Gender</label><br />
+    <input type="radio" name="gender" formControlName="gender" value="male"/>Male
+    <input type="radio" name="gender" formControlName="gender" value="female" />Female
+  </div>
+  <div>
+    <label for="dob"> DOB </label>
+    <input type="date" formControlName="DOB" />
+  </div>
+  <div>
+    <label for="password"> Password </label>
+    <input type="password" formControlName="password" />
+  </div>
+  <div>
+    <label for="password"> Confirm Password </label>
+    <input type="password" formControlName="rPassword" />
+  </div>
+  <div>
+    <button (click)="addUser()">Add</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+</form>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Company</th>
+        <th>DOB</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataList">
+        <td>
+          <span>{{ item.FName | json }}</span>
+        </td>
+        <td>
+          <span>{{ item.LName }}</span>
+        </td>
+        <td>
+          <span>{{ item.email }}</span>
+        </td>
+        <td>
+          <span>{{ item.phoneNumber }}</span>
+        </td>
+        <td>
+          <span>{{ item.company }}</span>
+        </td>
+        <td>
+          <span>{{ item.gender }}</span>
+        </td>
+        <td><span><button>Edit</button></span></td>
+        <td><span><button>Delete</button></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
