@@ -35,8 +35,12 @@ loading: boolean;
 
   public addUser() {
     this.dataList.push(this.userForm.value);
+
     let user = this.userForm.value
-    localStorage.setItem("user",JSON.stringify(user))
+
+    let userarr = JSON.stringify(user)
+
+    localStorage.setItem("user", userarr)
 
     // this.svc.postUserData(this.userForm)
     // .subscribe(data  => {
