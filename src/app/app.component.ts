@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SvvcService } from './svvc.service';
 
@@ -8,7 +8,7 @@ import { SvvcService } from './svvc.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   genders = ['Male', 'Female'];
 
@@ -33,22 +33,28 @@ export class AppComponent {
 
   public addUser() {
     this.dataList.push(this.userForm.value);
-    this.userForm.reset();
 
-      this.svc.postUserData(this.userForm.value)
+    console.log(this.userForm.value)
+
+    this.svc.postUserData(this.userForm.value)
       .subscribe({
         next:(res) => {
           alert("Profile Details Updated")
-          this.userForm.reset();
           console.log(res)
         },
-        error:() => {
-          alert("Something Went Wrong !!!")
-        }
       })
+
+      
   }
 
   public reset() {
     this.userForm.reset();
+  }
+
+  ngOnInit(){
+    this.svc.getUserData()
+    .subscribe(data  => {
+      console.log(data);
+    });
   }
 }

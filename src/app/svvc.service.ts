@@ -9,7 +9,7 @@ export class SvvcService {
   urlpath : string = "/assets/db.json"
 
   getUserData() {
-    return this.http.get<any>(this.urlpath);
+    return this.http.get<any>(this.urlpath)
   }
 
   postUserData(data: any) {
