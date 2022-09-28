@@ -1,5 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SvvcService } from './svvc.service';
+
 
 @Component({
   selector: 'my-app',
@@ -13,7 +15,7 @@ export class AppComponent {
 
   dataList: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private svc:SvvcService) {
     (this.dataList = []),
       (this.userForm = this.fb.group({
         FName: ['', Validators.required],
@@ -31,6 +33,8 @@ export class AppComponent {
   public addUser() {
     this.dataList.push(this.userForm.value);
     this.userForm.reset();
+
+      this.svc.postUserData(this.userForm.value)
   }
 
   public reset() {
