@@ -1,6 +1,7 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SvvcService } from './svvc.service';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -34,17 +35,10 @@ export class AppComponent implements OnInit {
   public addUser() {
     this.dataList.push(this.userForm.value);
 
-    console.log(this.userForm.value)
-
-    this.svc.postUserData(this.userForm.value)
-      .subscribe({
-        next:(res) => {
-          alert("Profile Details Updated")
-          console.log(res)
-        },
-      })
-
-      
+    this.svc.postUserData(FormData)
+    .subscribe(data  => {
+      console.warn(data);
+    });
   }
 
   public reset() {
@@ -54,7 +48,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.svc.getUserData()
     .subscribe(data  => {
-      console.log(data);
+      console.warn(data);
     });
   }
 }
