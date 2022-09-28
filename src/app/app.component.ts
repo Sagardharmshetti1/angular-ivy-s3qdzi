@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   userForm: FormGroup;
 
   dataList: any;
+loading: boolean;
 
   constructor(private fb: FormBuilder, private svc:SvvcService) {
     this.dataList = [],
@@ -34,11 +35,13 @@ export class AppComponent implements OnInit {
 
   public addUser() {
     this.dataList.push(this.userForm.value);
+    let user = this.userForm.value
+    localStorage.setItem("user",JSON.stringify(user))
 
-    this.svc.postUserData(FormData)
-    .subscribe(data  => {
-      console.warn(data);
-    });
+    // this.svc.postUserData(this.userForm)
+    // .subscribe(data  => {
+    //   console.warn(data);
+    // });
   }
 
   public reset() {
