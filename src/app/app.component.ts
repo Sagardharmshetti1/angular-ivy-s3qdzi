@@ -2,6 +2,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SvvcService } from './svvc.service';
 import { first } from 'rxjs/operators';
+import { User } from './model/user'
 
 
 @Component({
@@ -36,9 +37,7 @@ loading: boolean;
   public addUser() {
     this.dataList.push(this.userForm.value);
 
-    let user = this.userForm.value
-
-    let userarr = JSON.stringify(user)
+    let userarr = JSON.stringify(this.userForm.value)
 
     localStorage.setItem("user", userarr)
 
@@ -50,6 +49,7 @@ loading: boolean;
 
   public reset() {
     this.userForm.reset();
+    localStorage.getItem("user")
   }
 
   ngOnInit(){
@@ -57,5 +57,7 @@ loading: boolean;
     .subscribe(data  => {
       console.warn(data);
     });
+
+    
   }
 }
