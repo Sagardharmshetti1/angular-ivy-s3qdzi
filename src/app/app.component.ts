@@ -9,6 +9,7 @@ import { SvvcService } from './svvc.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+
   genders = ['Male', 'Female'];
 
   userForm: FormGroup;
@@ -16,7 +17,7 @@ export class AppComponent {
   dataList: any;
 
   constructor(private fb: FormBuilder, private svc:SvvcService) {
-    (this.dataList = []),
+    this.dataList = [],
       (this.userForm = this.fb.group({
         FName: ['', Validators.required],
         LName: ['', Validators.required],
@@ -35,6 +36,16 @@ export class AppComponent {
     this.userForm.reset();
 
       this.svc.postUserData(this.userForm.value)
+      .subscribe({
+        next:(res) => {
+          alert("Profile Details Updated")
+          this.userForm.reset();
+          console.log(res)
+        },
+        error:() => {
+          alert("Something Went Wrong !!!")
+        }
+      })
   }
 
   public reset() {

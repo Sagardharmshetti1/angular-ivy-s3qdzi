@@ -6,12 +6,14 @@ export class SvvcService {
 
   constructor(private http: HttpClient) { }
 
+  urlpath : string = "/assets/db.json"
+
   getUserData() {
-    return this.http.get<any>('assets/db.json');
+    return this.http.get<any>(this.urlpath);
   }
 
   postUserData(data: any) {
-    return this.http.post<any>('assets/db.json', data);
+    return this.http.post<any>(this.urlpath, data);
   }
 
 }

@@ -1,0 +1,15 @@
+{
+  "ClientList": [
+    {
+      "FName": "",
+      "LName": "",
+      "email": "",
+      "phoneNumber": "",
+      "company": "",
+      "gender": "",
+      "DOB": "",
+      "password": "",
+      "id": 1
+    }
+  ]
+}
